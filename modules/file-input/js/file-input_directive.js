@@ -50,10 +50,6 @@ angular.module('lumx.file-input', [])
 
                         element.addClass('input-file--is-active');
                     }
-                    else
-                    {
-                        scope.clear();
-                    }
                 }
 
                 scope.clear = function()
