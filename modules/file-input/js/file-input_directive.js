@@ -10,7 +10,8 @@ angular.module('lumx.file-input', [])
             scope: {
                 label: '@',
                 value: '=',
-                change: '&'
+                change: '&',
+                allowClear: '='
             },
             templateUrl: 'file-input.html',
             replace: true,
@@ -49,12 +50,29 @@ angular.module('lumx.file-input', [])
 
                         element.addClass('input-file--is-active');
                     }
+                    else
+                    {
+                        scope.clear();
+                    }
                 }
+
+                scope.clear = function()
+                {
+                    if (angular.isDefined(scope.change))
+                    {
+                        scope.change({e: $input[0].files[0], newValue: null, oldValue: $fileName.text()});
+                    }
+                    $fileName.text(null);
+                    element.removeClass('input-file--is-active');
+                    scope.value = null;
+                    scope.model = undefined;
+                };
 
                 scope.$watch('value', function(value)
                 {
                     setFileName(value);
                 });
+
             }
         };
     }]);
