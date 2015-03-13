@@ -62,6 +62,7 @@ angular.module('lumx.file-input', [])
                     element.removeClass('input-file--is-active');
                     scope.value = null;
                     scope.model = undefined;
+                    $input.val(null);
                 };
 
                 scope.$watch('value', function(value)
